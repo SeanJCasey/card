@@ -1,29 +1,12 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
-import {
-  withStyles,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  Dialog,
-  Typography,
-  DialogContentText,
-  LinearProgress,
-  Tooltip
-} from "@material-ui/core";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import CopyIcon from "@material-ui/icons/FileCopy";
-import * as Connext from "connext";
+import { Link } from "react-router-dom";
+import { withStyles, Button, Dialog, Typography } from "@material-ui/core";
 import Maker from "../assets/Maker.svg";
 import ConnextHorizontal from "../assets/ConnextHorizontal.svg";
 import money2020 from "../assets/money2020.svg";
 
-const { Currency, CurrencyConvertable, CurrencyType } = Connext.types;
-const cUtils = new Connext.Utils();
-const { getExchangeRates } = cUtils;
-
-const styles = theme => ({
+const styles = () => ({
   icon: {
     width: "40px",
     height: "40px"
@@ -46,7 +29,6 @@ class Money2020Confirmation extends Component {
 
   render() {
     const { classes } = this.props;
-    const { index, open } = this.state;
 
     return (
       <Grid
@@ -83,35 +65,32 @@ class Money2020Confirmation extends Component {
                 data={money2020}
                 type="image/svg+xml"
                 style={{ width: "60px" }}
-              >
-                <img src="yourfallback.jpg" />
-              </object>
+                aria-label="money2020 logo"
+              />
               <object
                 data={ConnextHorizontal}
                 type="image/svg+xml"
                 style={{ width: "100px" }}
-              >
-                <img src="yourfallback.jpg" />
-              </object>
+                aria-label="connext horizontal logo"
+              />
               <object
                 data={Maker}
                 type="image/svg+xml"
                 style={{ width: "80px" }}
-              >
-                <img src="yourfallback.jpg" />
-              </object>
+                aria-label="maker logo"
+              />
             </Grid>
             <Typography
-              style={{ width: "80%", paddingTop: "5%", textAlign: "center" }}
+              style={{ width: "80%", paddingTop: "5%", textAlign: "left" }}
               variant="h5"
-              color="primary"
+              color="#282b2e"
             >
               We're processing your request!
             </Typography>
             <Typography
-              style={{ width: "80%", paddingBottom: "5%", textAlign: "center" }}
-              variant="body2"
-              color="primary"
+              style={{ width: "80%", paddingBottom: "5%", textAlign: "left" }}
+              variant="body1"
+              color="#282b2e"
             >
               This may take a short time. Check your account balance in a few
               minutes.
@@ -128,36 +107,61 @@ class Money2020Confirmation extends Component {
               </Typography>
             </Button>
 
-            <Typography variant="body1"style={{ paddingTop: "5%", width: "80%" }}>
+            <Typography
+              variant="body1"
+              style={{ paddingTop: "5%", width: "80%", color: "#282b2e" }}
+            >
               Feel free to stop by the MakerDAO booth at M31 (Hall 2) to hear
               more about DAI and how to use it as a payment method. We are also
               there to support you in retrieving your DAI.
             </Typography>
 
-            <Grid container nowrap style={{ textAlign: "center", paddingTop: "5%", width: "80%" }}>
-            <Typography
-              variant="body1">
-              Read more about: &nbsp;
+            <Grid
+              container
+              nowrap
+              style={{
+                flexWrap: "wrap",
+                justifyContent: "space-evenly",
+                textAlign: "center",
+                paddingTop: "5%",
+                paddingBottom: "5%",
+                width: "80%",
+                color: "#282b2e"
+              }}
+            >
+              <Typography
+                item
+                variant="h6"
+                style={{ width: "100%", paddingBottom: "2%" }}
+              >
+                Learn more about:
               </Typography>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://connext.network"
+              <Link
+                to="https://connext.network"
+                style={{ textDecoration: "none" }}
               >
-                            <Typography
-              variant="body1"
-            >Connext</Typography>
-              </a>
-              &nbsp; &nbsp; &nbsp;
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://makerdao.com"
+                <Button
+                  className={classes.button}
+                  variant="outlined"
+                  color="primary"
+                  size="small"
+                >
+                  Connext
+                </Button>
+              </Link>
+              <Link
+                to="https://makerdao.com"
+                style={{ textDecoration: "none" }}
               >
-                 <Typography
-              variant="body1"
-            >DAI</Typography>
-              </a>
+                <Button
+                  className={classes.button}
+                  variant="outlined"
+                  color="primary"
+                  size="small"
+                >
+                  DAI
+                </Button>
+              </Link>
             </Grid>
             {/* <Button
                 onClick={() => this.props.history.push("/")}

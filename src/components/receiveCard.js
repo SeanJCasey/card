@@ -254,19 +254,16 @@ class ReceiveCard extends Component {
                 data={money2020}
                 type="image/svg+xml"
                 style={{ width: "60px" }}
-              >
-                <img src="yourfallback.jpg" />
-              </object>
+                aria-label="money2020 logo"
+              />
               <object
                 data={ConnextHorizontal}
                 type="image/svg+xml"
                 style={{ width: "100px" }}
-              >
-                <img src="yourfallback.jpg" />
-              </object>
-              <object data={Maker} type="image/svg+xml" style={{ width: "80px" }}>
-                <img src="yourfallback.jpg" />
-              </object>
+                aria-label="connext horizontal logo"
+              />
+              <object data={Maker} type="image/svg+xml" style={{ width: "80px" }}
+                  aria-label="maker logo"/>
             </Grid>
             <Grid
               container
@@ -292,7 +289,7 @@ class ReceiveCard extends Component {
                 variant="outlined"
                 style={{
                   background: "#FFF",
-                  border: "1px solid blue",
+                  border: "1px solid #FCA311",
                   padding: "5% 20% 5% 20%",
                   boxShadow:"1px black"
                 }}
@@ -306,16 +303,15 @@ class ReceiveCard extends Component {
                   justify="center"
                   alignItems="center"
                 >
-                  <Typography style={{ color: "blue" }}>
+                  <Typography style={{ color: "#FCA311" }}>
                     Request 1 Dai &nbsp;
                   </Typography>
                   <object
                     data={dai}
                     type="image/svg+xml"
                     style={{ width: "20px" }}
-                  >
-                    <img src="yourfallback.jpg" />
-                  </object>
+                    aria-label="dai logo"
+                  />
                 </Grid>
               </Button>
             </Grid>

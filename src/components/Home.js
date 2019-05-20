@@ -176,35 +176,38 @@ class Home extends React.Component {
               Cash Out
             </Button>
           </Grid>
-          <Grid container xs={12} justify="center" alignItems="center" style={{textAlign:"center"}}>
+          <Grid container xs={12} justify="center" alignItems="center" style={{textAlign:"center", color:"#282b2e"}}>
                 <Typography item variant="body1" style={{width:"90%"}}>
-                Meet us at the MakerDAO booth M31 (Hall 2) for more information on Dai or technical support.
+                Meet us at the MakerDAO booth M31 (Hall 2) for technical support or more information on Dai.
                   </Typography>
               </Grid>
-        <Grid container nowrap justify="center" style={{ textAlign: "center", paddingTop: "5%"}}>
+        <Grid container nowrap justify="center" style={{ flexWrap:"wrap",justifyContent:"center",textAlign: "center", paddingTop: "5%", color:"#282b2e"}}>
             <Typography
-              variant="body1">
+              variant="body1" style={{width:"100%", paddingBottom:"2%"}}>
               Read more about: &nbsp;
               </Typography>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://connext.network"
-              >
-                            <Typography
-              variant="body1"
-            >Connext</Typography>
-              </a>
-              &nbsp; &nbsp; &nbsp;
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://makerdao.com"
-              >
-                 <Typography
-              variant="body1"
-            >DAI</Typography>
-              </a>
+              <Link to="https://connext.network" style={{textDecoration:"none", marginRight:"2%"}}>
+              <Button
+                variant="outlined"
+                color="primary"
+                size="small">
+
+  
+            Connext
+
+              </Button>
+              </Link>
+              <Link to="https://makerdao.com" style={{textDecoration:"none", marginLeft:"2%"}}>
+              <Button
+                variant="outlined"
+                color="primary"
+                size="small">
+
+  
+            DAI
+
+              </Button>
+              </Link>
             </Grid>
         </Grid>
       </>
