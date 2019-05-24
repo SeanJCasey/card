@@ -176,12 +176,12 @@ class Home extends React.Component {
               Cash Out
             </Button>
           </Grid>
-          <Grid container xs={12} justify="center" alignItems="center" style={{textAlign:"center", color:"#282b2e"}}>
-                <Typography item variant="body1" style={{width:"90%"}}>
+          <Grid container justify="center" alignItems="center" style={{textAlign:"center", color:"#282b2e"}}>
+                <Typography  variant="body1" style={{width:"90%"}}>
                 Meet us at the MakerDAO booth M31 (Hall 2) for technical support or more information on Dai.
                   </Typography>
               </Grid>
-        <Grid container nowrap justify="center" style={{ flexWrap:"wrap",justifyContent:"center",textAlign: "center", paddingTop: "5%", color:"#282b2e"}}>
+        <Grid container justify="center" style={{ flexWrap:"wrap",justifyContent:"center",textAlign: "center", paddingTop: "5%", color:"#282b2e"}}>
             <Typography
               variant="body1" style={{width:"100%", paddingBottom:"2%"}}>
               Read more about: &nbsp;

@@ -42,14 +42,15 @@ class ChannelCard extends Component {
           >
           <Grid item xs={12}>
             <span>
-              <Typography inline={true} variant="h5" className={classes.row}>
-                {"$ "}
-              </Typography>
+              
               <Typography inline={true} variant="h1" className={classes.row}>
                 <span>{whole}</span>
               </Typography>
-              <Typography inline={true} variant="h3" className={classes.row}>
+              <Typography inline={true} variant="h2" className={classes.row}>
                 <span>{part}</span>
+              </Typography>
+              <Typography inline={true} variant="h5" className={classes.row}>
+                {" DAI"}
               </Typography>
             </span>
           </Grid>

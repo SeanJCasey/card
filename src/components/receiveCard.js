@@ -11,6 +11,10 @@ import { withStyles, Grid } from "@material-ui/core";
 import MySnackbar from "./snackBar";
 import Web3 from "web3";
 import { getAmountInDAI } from "../utils/currencyFormatting";
+import ConnextHorizontal from "../assets/ConnextHorizontal.svg";
+import money2020 from "../assets/money2020.svg";
+import Maker from "../assets/Maker.svg";
+import dai from "../assets/dai.svg";
 
 const Big = (n) => eth.utils.bigNumberify(n.toString())
 
@@ -36,20 +40,20 @@ class ReceiveCard extends Component {
   }
 
   sendMakerRequest = async() =>{
-    const { publicUrl, address } = this.props;
-    const APIKEY = "27afb88a0b59ef58eb92dd8cb1ca24e3" //process.env.MAILGUN_API_KEY
-    const DOMAIN = 'money2020.connext.network'
-    const mg = mailgun({apiKey: APIKEY, domain: DOMAIN});
-    const url = `${publicUrl || "https:/"}/send?amountToken=1&recipient=${address || eth.constants.AddressZero}`;
-    const data = {
-      from: 'Dai Card <requests@money2020.connext.network>',
-      to: 'hunter@connext.network', //dai2020@makerdao.com
-      subject: `DAI REQUEST ${address || eth.constants.AddressZero}`,
-      text: url
-    };
-    await mg.messages().send(data, function (error, body) {
-      console.log(body);
-    });
+    // const { publicUrl, address } = this.props;
+    // const APIKEY = "27afb88a0b59ef58eb92dd8cb1ca24e3" //process.env.MAILGUN_API_KEY
+    // const DOMAIN = 'money2020.connext.network'
+    // const mg = mailgun({apiKey: APIKEY, domain: DOMAIN});
+    // const url = `${publicUrl || "https:/"}/send?amountToken=1&recipient=${address || eth.constants.AddressZero}`;
+    // const data = {
+    //   from: 'Dai Card <requests@money2020.connext.network>',
+    //   to: 'hunter@connext.network', //dai2020@makerdao.com
+    //   subject: `DAI REQUEST ${address || eth.constants.AddressZero}`,
+    //   text: url
+    // };
+    // await mg.messages().send(data, function (error, body) {
+    //   console.log(body);
+    // });
     console.log(`sent message`);
     this.props.history.push('/money2020confirmation')
   }
