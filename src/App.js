@@ -182,7 +182,6 @@ class App extends React.Component {
       case "RINKEBY":
       // TODO: overrides so it works with hub
         hubUrl = overrides.rinkebyHub || `${publicUrl}/api/rinkeby/hub`;
-        ethprovider = new eth.getDefaultProvider("rinkeby");
         ethUrl = overrides.rinkebyEth || undefined
         ethprovider = overrides.rinkebyEth
           ? new eth.providers.JsonRpcProvider(overrides.rinkebyEth)
@@ -202,7 +201,7 @@ class App extends React.Component {
     const opts = {
       hubUrl,
       mnemonic,
-      ethUrl
+      ethUrl,
     };
     const connext = await Connext.createClient(opts);
     const address = await connext.wallet.getAddress();
