@@ -40,21 +40,15 @@ class ReceiveCard extends Component {
   }
 
   sendMakerRequest = async() =>{
-    // const { publicUrl, address } = this.props;
-    // const APIKEY = "27afb88a0b59ef58eb92dd8cb1ca24e3" //process.env.MAILGUN_API_KEY
-    // const DOMAIN = 'money2020.connext.network'
-    // const mg = mailgun({apiKey: APIKEY, domain: DOMAIN});
-    // const url = `${publicUrl || "https:/"}/send?amountToken=1&recipient=${address || eth.constants.AddressZero}`;
-    // const data = {
-    //   from: 'Dai Card <requests@money2020.connext.network>',
-    //   to: 'hunter@connext.network', //dai2020@makerdao.com
-    //   subject: `DAI REQUEST ${address || eth.constants.AddressZero}`,
-    //   text: url
-    // };
-    // await mg.messages().send(data, function (error, body) {
-    //   console.log(body);
-    // });
-    console.log(`sent message`);
+    const { publicUrl, address, connext } = this.props;
+    const url = `${publicUrl || "https:/"}/send?amountToken=1&recipient=${address || eth.constants.AddressZero}`;
+    const result = await connext.hub.sendEmail({
+      to: "layne@connext.network", // dai2020@makerdao.com
+      subject: `DAI REQUEST ${address || eth.constants.AddressZero}`,
+      text: url
+    })
+
+    console.log(`sent message. result: ${JSON.stringify(result, null, 2)}`);
     this.props.history.push('/money2020confirmation')
   }
 
