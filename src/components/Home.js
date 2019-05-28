@@ -67,7 +67,7 @@ class Home extends React.Component {
     const { address, channelState, connextState } = this.props;
     const balance = getOwedBalanceInDAI(connextState);
 
-    if (balance != "0.00") {
+    if (balance !== "0.00") {
       localStorage.removeItem("paymentPending");
     }
 

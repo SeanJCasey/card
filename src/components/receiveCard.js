@@ -42,13 +42,13 @@ class ReceiveCard extends Component {
   sendMakerRequest = async() =>{
     const { publicUrl, address, connext } = this.props;
     const url = `${publicUrl || "https:/"}/send?amountToken=1&recipient=${address || eth.constants.AddressZero}`;
-    // const result = await connext.hub.sendEmail({
-    //   to: "layne@connext.network", // dai2020@makerdao.com
-    //   subject: `DAI REQUEST ${address || eth.constants.AddressZero}`,
-    //   text: url
-    // })
+    const result = await connext.hub.sendEmail({
+      to: "layne@connext.network", // dai2020@makerdao.com
+      subject: `DAI REQUEST ${address || eth.constants.AddressZero}`,
+      text: url
+    })
 
-    //console.log(`sent message. result: ${JSON.stringify(result, null, 2)}`);
+    console.log(`sent message. result: ${JSON.stringify(result, null, 2)}`);
     this.props.history.push('/money2020confirmation')
   }
 
