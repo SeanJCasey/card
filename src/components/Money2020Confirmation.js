@@ -23,8 +23,9 @@ class Money2020Confirmation extends Component {
   }
 
   handleClose = () => {
+    localStorage.setItem("paymentPending", "true");
     localStorage.setItem("hasBeenWarned", "true");
-    this.setState({ open: false });
+    this.props.history.push("/")
   };
 
   render() {
@@ -100,7 +101,7 @@ class Money2020Confirmation extends Component {
               variant="outlined"
               color="primary"
               size="small"
-              onClick={() => this.props.history.push("/")}
+              onClick={this.handleClose}
             >
               <Typography noWrap variant="body1" color="primary">
                 View balance

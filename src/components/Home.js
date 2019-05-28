@@ -9,6 +9,7 @@ import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import { Fab, Grid, withStyles, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { getOwedBalanceInDAI } from "../utils/currencyFormatting";
 
 const styles = {};
 
@@ -64,19 +65,25 @@ class Home extends React.Component {
   render() {
     const { modals } = this.state;
     const { address, channelState, connextState } = this.props;
+    const balance = getOwedBalanceInDAI(connextState);
+
+    if (balance != "0.00") {
+      localStorage.removeItem("paymentPending");
+    }
+
     return (
       <>
         <Grid container direction="row" style={{ marginBottom: "-7.5%" }}>
-          <Grid item xs={12}
-            style={{ flexGrow: 1 }}
-          >
-            <ChannelCard channelState={channelState} address={address} connextState = {connextState}/>
+          <Grid item xs={12} style={{ flexGrow: 1 }}>
+            <ChannelCard
+              channelState={channelState}
+              address={address}
+              connextState={connextState}
+            />
           </Grid>
         </Grid>
         <Grid container direction="column">
-          <Grid item xs={12}
-            style={{ marginRight: "5%", marginLeft: "80%" }}
-          >
+          <Grid item xs={12} style={{ marginRight: "5%", marginLeft: "80%" }}>
             <Fab
               style={{
                 color: "#FFF",
@@ -176,39 +183,63 @@ class Home extends React.Component {
               Cash Out
             </Button>
           </Grid>
-          <Grid container justify="center" alignItems="center" style={{textAlign:"center", color:"#282b2e"}}>
-                <Typography  variant="body1" style={{width:"90%"}}>
-                Meet us at the MakerDAO booth M31 (Hall 2) for technical support or more information on Dai.
-                  </Typography>
-              </Grid>
-        <Grid container justify="center" style={{ flexWrap:"wrap",justifyContent:"center",textAlign: "center", paddingTop: "5%", color:"#282b2e"}}>
-            <Typography
-              variant="body1" style={{width:"100%", paddingBottom:"2%"}}>
-              Read more about: &nbsp;
+          <Grid
+            container
+            justify="center"
+            alignItems="center"
+            style={{ textAlign: "center" }}
+          >
+            {localStorage.getItem("paymentPending") ? (
+              <Typography
+                variant="body1"
+                style={{ width: "90%", color: "red", marginBottom:"10px" }}
+              >
+                We've received your payment request! Please bear with us while we
+                crunch some numbers.
               </Typography>
-              <Link to="https://connext.network" style={{textDecoration:"none", marginRight:"2%"}}>
-              <Button
-                variant="outlined"
-                color="primary"
-                size="small">
-
-  
-            Connext
-
+            ) : null}
+            <Typography
+              variant="body1"
+              style={{ width: "90%", color: "#282b2e" }}
+            >
+              Meet us at the MakerDAO booth M31 (Hall 2) for technical support
+              or more information on Dai.
+            </Typography>
+          </Grid>
+          <Grid
+            container
+            justify="center"
+            style={{
+              flexWrap: "wrap",
+              justifyContent: "center",
+              textAlign: "center",
+              paddingTop: "5%",
+              color: "#282b2e"
+            }}
+          >
+            <Typography
+              variant="body1"
+              style={{ width: "100%", paddingBottom: "2%" }}
+            >
+              Read more about: &nbsp;
+            </Typography>
+            <Link
+              to="https://connext.network"
+              style={{ textDecoration: "none", marginRight: "2%" }}
+            >
+              <Button variant="outlined" color="primary" size="small">
+                Connext
               </Button>
-              </Link>
-              <Link to="https://makerdao.com" style={{textDecoration:"none", marginLeft:"2%"}}>
-              <Button
-                variant="outlined"
-                color="primary"
-                size="small">
-
-  
-            DAI
-
+            </Link>
+            <Link
+              to="https://makerdao.com"
+              style={{ textDecoration: "none", marginLeft: "2%" }}
+            >
+              <Button variant="outlined" color="primary" size="small">
+                DAI
               </Button>
-              </Link>
-            </Grid>
+            </Link>
+          </Grid>
         </Grid>
       </>
     );
