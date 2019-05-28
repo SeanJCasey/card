@@ -516,6 +516,7 @@ class App extends React.Component {
                   maxDeposit={maxDeposit}
                   channelState={channelState}
                   publicUrl={publicUrl}
+                  connext={connext}
                 />
               )}
             />
