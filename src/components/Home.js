@@ -223,22 +223,22 @@ class Home extends React.Component {
             >
               Read more about: &nbsp;
             </Typography>
-            <Link
-              to="https://connext.network"
+            <a
+              href="https://connext.network"
               style={{ textDecoration: "none", marginRight: "2%" }}
             >
               <Button variant="outlined" color="primary" size="small">
                 Connext
               </Button>
-            </Link>
-            <Link
-              to="https://makerdao.com"
+            </a>
+            <a
+              href="https://makerdao.com"
               style={{ textDecoration: "none", marginLeft: "2%" }}
             >
               <Button variant="outlined" color="primary" size="small">
                 DAI
               </Button>
-            </Link>
+            </a>
           </Grid>
         </Grid>
       </>

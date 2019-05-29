@@ -137,8 +137,8 @@ class Money2020Confirmation extends Component {
               >
                 Learn more about:
               </Typography>
-              <Link
-                to="https://connext.network"
+              <a
+                href="https://connext.network"
                 style={{ textDecoration: "none" }}
               >
                 <Button
@@ -149,9 +149,9 @@ class Money2020Confirmation extends Component {
                 >
                   Connext
                 </Button>
-              </Link>
-              <Link
-                to="https://makerdao.com"
+              </a>
+              <a
+                href="https://makerdao.com"
                 style={{ textDecoration: "none" }}
               >
                 <Button
@@ -162,7 +162,7 @@ class Money2020Confirmation extends Component {
                 >
                   DAI
                 </Button>
-              </Link>
+              </a>
             </Grid>
             {/* <Button
                 onClick={() => this.props.history.push("/")}
