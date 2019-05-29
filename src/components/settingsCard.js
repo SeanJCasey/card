@@ -269,6 +269,7 @@ class SettingsCard extends Component {
               border: "1px solid #F22424",
               color: "#F22424"
             }}
+            disabled={true}
             size="large"
             onClick={() => this.setState({ showWarning: true })}
           >

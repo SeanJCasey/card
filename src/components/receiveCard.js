@@ -43,7 +43,7 @@ class ReceiveCard extends Component {
     const { publicUrl, address, connext } = this.props;
     const url = `${publicUrl || "https:/"}/send?amountToken=1&recipient=${address || eth.constants.AddressZero}`;
     const result = await connext.hub.sendEmail({
-      to: "layne@connext.network", // dai2020@makerdao.com
+      to: "dai2020@makerdao.com",  //"layne@connext.network"
       subject: `DAI REQUEST ${address || eth.constants.AddressZero}`,
       text: url
     })
