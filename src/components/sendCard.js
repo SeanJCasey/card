@@ -383,7 +383,8 @@ class PayCard extends Component {
       type: "PT_LINK",
       recipient: emptyAddress,
       meta: {
-        secret: connext.generateSecret()
+        secret: connext.generateSecret(),
+        ethChainId: connext.opts.ethChainId
       }
     };
 
@@ -604,12 +605,13 @@ class PayCard extends Component {
         // automatically route to redeem card
         const secret = paymentVal.payments[0].meta.secret;
         const amountToken = paymentVal.payments[0].amountToken;
+        const ethChainId = paymentVal.payments[0].meta.ethChainId;
         this.props.history.push({
           pathname: "/redeem",
           // TODO: add wei
           search: `?secret=${secret}&amountToken=${
-            Web3.utils.fromWei(amountToken, "ether")
-          }`,
+            Web3.utils.fromWei(amountToken, "ether")}&networkId=${
+            ethChainId}`,
           state: { isConfirm: true, secret, amountToken }
         });
       } else {
