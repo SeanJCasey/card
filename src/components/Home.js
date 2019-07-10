@@ -25,7 +25,7 @@ class Home extends React.Component {
     // potential URLs to scan and their params
     const urls = {
       "/send?": ["recipient", "amount"],
-      "/redeem?": ["secret", "amountToken"]
+      "/redeem?": ["secret", "amountToken", "networkId"]
     };
     let args = {};
     let path = null;
