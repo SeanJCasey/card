@@ -546,7 +546,7 @@ class App extends React.Component {
             <Route
               path="/redeem"
               render={props => (
-                <RedeemCard {...props} publicUrl={publicUrl} connext={connext} channelState={channelState} connextState={connextState} />
+                <RedeemCard {...props} publicUrl={publicUrl} connext={connext} channelState={channelState} connextState={connextState} networkHandler={this.networkHandler} />
               )}
             />
             <Route

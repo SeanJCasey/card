@@ -297,7 +297,7 @@ class RedeemCard extends Component {
     }
 
     // set rpc to the redeem query network if not sender
-    const rpc = localStorage.getItem("rpc-prod");
+    let rpc = localStorage.getItem("rpc-prod");
 
     const validNetworks = {
       1: "MAINNET",
@@ -306,7 +306,8 @@ class RedeemCard extends Component {
 
     if (query.networkId in validNetworks
         && validNetworks[query.networkId] !== rpc) {
-      localStorage.setItem("rpc-prod", validNetworks[query.networkId]);
+      rpc = validNetworks[query.networkId];
+      await this.props.networkHandler(rpc);
     }
 
     // set status to redeeming on mount if not sender
