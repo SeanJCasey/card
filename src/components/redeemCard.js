@@ -275,13 +275,15 @@ class RedeemCard extends Component {
   async componentWillMount() {
     const { location } = this.props;
     const query = queryString.parse(location.search);
+
     // uncondonditionally set secret from query
     this.setState({
       secret: query.secret,
       amount: {
         amountToken: Web3.utils.toWei(query.amountToken, "ether"),
         amountWei: "0" // TODO: add wei
-      }
+      },
+      networkId: query.networkId
     });
 
     // set state vars if they exist
@@ -292,6 +294,19 @@ class RedeemCard extends Component {
         showReceipt: false,
       });
       return;
+    }
+
+    // set rpc to the redeem query network if not sender
+    const rpc = localStorage.getItem("rpc-prod");
+
+    const validNetworks = {
+      1: "MAINNET",
+      4: "RINKEBY"
+    }
+
+    if (query.networkId in validNetworks
+        && validNetworks[query.networkId] !== rpc) {
+      localStorage.setItem("rpc-prod", validNetworks[query.networkId]);
     }
 
     // set status to redeeming on mount if not sender
@@ -315,12 +330,12 @@ class RedeemCard extends Component {
     )
   }
 
-  generateQrUrl(secret, amount) {
+  generateQrUrl(secret, amount, networkId) {
     const { publicUrl } = this.props;
     // TODO: add wei
     const url = `${publicUrl}/redeem?secret=${
       secret ? secret : ""
-    }&amountToken=${amount ? Web3.utils.fromWei(amount.amountToken, "ether") : "0"}`;
+    }&amountToken=${amount ? Web3.utils.fromWei(amount.amountToken, "ether") : "0"}&networkId=${networkId ? networkId : ""}`;
     return url;
   }
 
@@ -510,10 +525,11 @@ class RedeemCard extends Component {
       amount,
       redeemPaymentState,
       copied,
+      networkId
     } = this.state;
 
     const { classes, connextState, history } = this.props;
-    const url = this.generateQrUrl(secret, amount);
+    const url = this.generateQrUrl(secret, amount, networkId);
 
     return (
       <Grid>
