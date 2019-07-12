@@ -269,7 +269,10 @@ class RedeemCard extends Component {
       showReceipt: false,
       amount: null,
       copied: false,
+      networkId: null
     };
+
+    this.rpcMismatch = false;
   }
 
   async componentWillMount() {
@@ -306,8 +309,8 @@ class RedeemCard extends Component {
 
     if (query.networkId in validNetworks
         && validNetworks[query.networkId] !== rpc) {
-      rpc = validNetworks[query.networkId];
-      await this.props.networkHandler(rpc);
+      this.rpcMismatch = true;
+      await this.props.networkHandler(validNetworks[query.networkId]);
     }
 
     // set status to redeeming on mount if not sender
@@ -318,8 +321,12 @@ class RedeemCard extends Component {
 
   async redeemPoller() {
     let { redeemPaymentState } = this.state
+    const { rpcMismatch } = this
     await interval(
       async (iteration, stop) => {
+        // Prevent race condition
+        if (rpcMismatch) return;
+
         const processing = redeemPaymentState === RedeemPaymentStates.Redeeming || redeemPaymentState === RedeemPaymentStates.Collateralizing
         if (redeemPaymentState && !processing) {
           stop()
